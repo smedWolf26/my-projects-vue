@@ -1,27 +1,26 @@
 <script setup>
 import { reactive } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { useTitle } from '@vueuse/core'
 import AppButton from '@/components/AppButton.vue'
 import FormField from '@/components/FormField.vue'
 import { useAuthStore } from '@/stores/auth'
 import { useAsync } from '@/composables/useAsync'
 
-useTitle('Sign in · Projects')
+useTitle('Create account · Projects')
 
 const router = useRouter()
-const route = useRoute()
 const auth = useAuthStore()
 const { loading, error, fieldErrors, run } = useAsync()
 
 const form = reactive({ email: '', password: '' })
+
 async function onSubmit() {
   try {
-    await run(() => auth.login(form))
-    const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : '/projects'
-    router.replace(redirect)
+    await run(() => auth.register(form))
+    router.replace('/projects')
   } catch {
-    // error captured
+    // error captured by useAsync
   }
 }
 </script>
