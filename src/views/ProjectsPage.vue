@@ -4,7 +4,7 @@ import { storeToRefs } from 'pinia'
 import { useTitle } from '@vueuse/core'
 import AppButton from '@/components/AppButton.vue'
 import FormField from '@/components/FormField.vue'
-//import ProjectCard from '@/components/ProjectCard.vue'
+import ProjectCard from '@/components/ProjectCard.vue'
 import { useProjectsStore } from '@/stores/projects'
 import { useAsync } from '@/composables/useAsync'
 
